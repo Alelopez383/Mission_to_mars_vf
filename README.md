@@ -3,4 +3,46 @@ Robin, who loves astronomy and wants to work for NASA one day, has decided to us
 
 What we need to do:
 
-We need to explore the design of the webpage so that we can write a script that knows what it's looking at when it interacts with a webpage. Robin wants to be kept up to date with different Mars news, and she's enjoyed the articles published on the NASA news website Mars https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest
+We need to explore the design of the webpage so that we can write a script that knows what it's looking at when it interacts with a webpage. Robin wants to be kept up to date with different Mars news, and she's enjoyed the articles published on the NASA news website Mars https://mars.nasa.gov/news/?page=0&per_page=40&order=publish_date+desc%2Ccreated_at+desc&search=&category=19%2C165%2C184%2C204&blank_scope=Latest; images from https://spaceimages-mars.com, and some more data from https://galaxyfacts-mars.com/
+
+
+We helped Robin to automate visiting a website to scrape the top news article (title and summary) and, with just a few lines of code, we have automated the task of visiting a website and navigating through it to find a full-size image, and then we've extracted a link based on its location on the page. Our app will always pull the full-size featured image.
+
+- Scrapping title and summary
+
+```
+# Use the parent element to find the first `a` tag and save it as `news_title`
+news_title = slide_elem.find('div', class_='content_title').get_text()
+news_title
+
+# Use the parent element to find the paragraph text
+news_p = slide_elem.find('div', class_='article_teaser_body').get_text()
+news_p
+
+```
+- Scrapping images
+```
+# Visit URL
+url = 'https://spaceimages-mars.com'
+browser.visit(url)
+
+# Find and click the full image button
+full_image_elem = browser.find_by_tag('button')[1]
+full_image_elem.click()
+
+# Parse the resulting html with soup
+html = browser.html
+img_soup = soup(html, 'html.parser')
+
+# Find the relative image url
+img_url_rel = img_soup.find('img', class_='fancybox-image').get('src')
+img_url_rel
+
+# Use the base URL to create an absolute URL
+img_url = f'https://spaceimages-mars.com/{img_url_rel}'
+img_url
+
+```
+![image](https://user-images.githubusercontent.com/43974872/200361278-e0110919-3910-4e82-a7ae-dfb537eb0646.png | width=200)
+
+

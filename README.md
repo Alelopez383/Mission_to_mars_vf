@@ -43,6 +43,6 @@ img_url = f'https://spaceimages-mars.com/{img_url_rel}'
 img_url
 
 ```
-![image](https://user-images.githubusercontent.com/43974872/200361278-e0110919-3910-4e82-a7ae-dfb537eb0646.png | width=200)
+https://spaceimages-mars.com/image/featured/mars2.jpg
 
 

@@ -45,4 +45,16 @@ img_url
 ```
 https://spaceimages-mars.com/image/featured/mars2.jpg
 
+- Scrapping table
+```
+#Create a new DataFrame using Pandas from the HTML table
 
+df = pd.read_html('https://galaxyfacts-mars.com')[0]
+df.columns=['description', 'Mars', 'Earth']
+df.set_index('description', inplace=True)
+df
+
+#Turn the DataFrame back to html
+df.to_html()
+
+```

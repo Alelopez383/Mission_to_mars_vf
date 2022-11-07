@@ -53,8 +53,13 @@ df = pd.read_html('https://galaxyfacts-mars.com')[0]
 df.columns=['description', 'Mars', 'Earth']
 df.set_index('description', inplace=True)
 df
+```
+![image](https://user-images.githubusercontent.com/43974872/200367777-854193d9-aba7-4656-b6f8-bdb436645d48.png)
 
+```
 #Turn the DataFrame back to html
 df.to_html()
 
 ```
+![image](https://user-images.githubusercontent.com/43974872/200367858-4edacfae-045f-49a8-bf15-d04f6f8efb37.png)
+

@@ -63,3 +63,7 @@ df.to_html()
 ```
 ![image](https://user-images.githubusercontent.com/43974872/200367858-4edacfae-045f-49a8-bf15-d04f6f8efb37.png)
 
+- After creating a web application with Flask, MongoDB and Boostrap we got:
+
+![image](https://user-images.githubusercontent.com/43974872/200478022-10a7c6b6-dc9c-478e-9df4-4c45dfd29db3.png)
+

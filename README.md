@@ -63,13 +63,62 @@ df.to_html()
 ```
 ![image](https://user-images.githubusercontent.com/43974872/200367858-4edacfae-045f-49a8-bf15-d04f6f8efb37.png)
 
-- After creating a web application with Flask, MongoDB and Boostrap we got the shell:
+# After creating a web application with Flask, MongoDB and Boostrap we got the shell:
 
 ![image](https://user-images.githubusercontent.com/43974872/200478022-10a7c6b6-dc9c-478e-9df4-4c45dfd29db3.png)
 
-- When Flask, MongoDB and the Python script are connected, we got:
+# When Flask, MongoDB and the Python script are connected, we got:
 ![image](https://user-images.githubusercontent.com/43974872/200483460-a0d6d877-8d11-440b-9ccc-fbaaae66a8e6.png)
 
--After scraping the newest data:
+# After scraping the newest data:
 ![image](https://user-images.githubusercontent.com/43974872/200483283-5cfac232-49f8-46ea-882a-e9cf277c7668.png)
 
+# Hemispheres images
+Now that the web app is looking good and functioning well, we want to scrape Full-Resolution Mars Hemisphere Images so we can add after in the web application. To do so, we use https://marshemispheres.com/ to extract the images with their titles and urls, and for loop to get the list.
+
+```
+#Browser to visit url
+url = 'https://marshemispheres.com/'
+browser.visit(url)
+
+hemi_html = browser.html
+hemi_soup = soup(hemi_html, 'html.parser')
+
+items = hemi_soup.find_all('div', class_='item')
+
+#Create a list to hold the info
+hemisphere_image_urls = []
+
+#Write code to retrieve the image urls and titles for each hemisphere.
+
+main_url = "https://marshemispheres.com/"
+
+for url in items:
+    hemisphere = {}
+    titles = url.find('h3').text
+    
+    # create link for full image
+    link_ref = url.find('a', class_='itemLink product-item')['href']
+    
+    # Use the base URL to create an absolute URL and browser visit
+    browser.visit(main_url + link_ref)
+    
+    # parse the data
+    image_html = browser.html
+    image_soup = soup(image_html, 'html.parser')
+    download = image_soup.find('div', class_= 'downloads')
+    img_url = download.find('a')['href']
+    
+    # append list
+    hemisphere['img_url'] = img_url
+    hemisphere['title'] = titles
+    hemisphere_image_urls.append(hemisphere)
+    browser.back()
+    
+ #Print the list that holds the dictionary of each image url and title.
+ hemisphere_image_urls
+ 
+ ##Quit the browser
+browser.quit()
+```
+![image](https://user-images.githubusercontent.com/43974872/200751458-3951d883-3f0c-4536-87a4-cc9f6fee2e85.png)

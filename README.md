@@ -74,51 +74,81 @@ df.to_html()
 ![image](https://user-images.githubusercontent.com/43974872/200483283-5cfac232-49f8-46ea-882a-e9cf277c7668.png)
 
 # Hemispheres images
-Now that the web app is looking good and functioning well, we want to scrape Full-Resolution Mars Hemisphere Images so we can add after in the web application. To do so, we use https://marshemispheres.com/ to extract the images with their titles and urls, and for loop to get the list.
+Now that the web app is looking good and functioning well, we want to scrape Full-Resolution Mars Hemisphere Images so we can add after in the web application. To do so, we use https://marshemispheres.com/ to extract the images with their titles and urls, and for loop to get the list. After having the correct script, the scrapin with all the mars_data (titles, url, images for the latests news, hemispheres images), also we need to have MongoD open, Flask running, Mongosh with the database functioning, the index.html and just run the Python code, app.py.
 
 ```
-#Browser to visit url
+-------------------------------- 
+# Hemispheres images and titles #
+---------------------------------
+# 1. Use browser to visit the URL 
 url = 'https://marshemispheres.com/'
+
 browser.visit(url)
-
-hemi_html = browser.html
-hemi_soup = soup(hemi_html, 'html.parser')
-
-items = hemi_soup.find_all('div', class_='item')
-
-#Create a list to hold the info
+# 2. Create a list to hold the images and titles.
 hemisphere_image_urls = []
 
-#Write code to retrieve the image urls and titles for each hemisphere.
+# 3. Write code to retrieve the image urls and titles for each hemisphere.
+html = browser.html
+img_soup = soup(html, 'html.parser')
 
-main_url = "https://marshemispheres.com/"
+# find the relative image url
+h_img_url_p=img_soup.find('a',class_="itemLink product-item").get('href')
 
-for url in items:
-    hemisphere = {}
-    titles = url.find('h3').text
-    
-    # create link for full image
-    link_ref = url.find('a', class_='itemLink product-item')['href']
-    
-    # Use the base URL to create an absolute URL and browser visit
-    browser.visit(main_url + link_ref)
-    
-    # parse the data
-    image_html = browser.html
-    image_soup = soup(image_html, 'html.parser')
-    download = image_soup.find('div', class_= 'downloads')
-    img_url = download.find('a')['href']
-    
-    # append list
-    hemisphere['img_url'] = img_url
-    hemisphere['title'] = titles
-    hemisphere_image_urls.append(hemisphere)
+#Complete url
+h_img_url= f'https://marshemispheres.com/{h_img_url_p}'
+#we want to find all, not only one
+h_img_url_p=img_soup.find_all('a',class_="itemLink product-item")
+
+#parse and use for loop to have all the links complete
+html=browser.html
+img_soup = soup(html,'html.parser')
+complete_links=[]
+for line in img_soup.find_all('a',class_="itemLink product-item"):
+    h_img_url= f"https://marshemispheres.com/{line.get('href')}"
+    if h_img_url not in complete_links:
+        complete_links.append(h_img_url)
+complete_links.pop()
+
+#list to put the urls
+hemisphere_image_urls = []
+
+for link in complete_links:
+    #empty dictionary
+    hemispheres={}
+    #browse through each one
+    browser.visit(link)
+    #parse
+    im_html=browser.html
+    he_img_soup = soup(im_html,'html.parser')
+    #scrape
+    he_title=he_img_soup.find('h2', class_='title').get_text()
+    he_img_url_p=he_img_soup.find('a', target="_blank", string='Sample').get('href')
+    #complete links
+    he_img_url= f'https://marshemispheres.com/{he_img_url_p}'
+    #append
+    hemispheres={'img_url': he_img_url, 'title':he_title}
+    hemisphere_image_urls.append(hemispheres)
+        
+    # Browse back to repeat
     browser.back()
-    
- #Print the list that holds the dictionary of each image url and title.
- hemisphere_image_urls
- 
- ##Quit the browser
-browser.quit()
 ```
-![image](https://user-images.githubusercontent.com/43974872/200751458-3951d883-3f0c-4536-87a4-cc9f6fee2e85.png)
+- URL list
+![image](https://user-images.githubusercontent.com/43974872/201003654-0200ba2d-1f87-4a77-803d-4aa7704a5b5a.png)
+
+# Updating web application
+![image](https://user-images.githubusercontent.com/43974872/201003267-998f09cd-d7e3-4aa6-a664-ab0c9ddf9836.png)
+
+#To make the app mobile responsive
+We can use the DevTools to check if any web application is mobile responsive 
+![image](https://user-images.githubusercontent.com/43974872/201009160-d6de6c2e-608e-4d2b-a922-52f422c77a3f.png)
+
+- For tablets, we would use col-sm-12. 
+- For mobile phones, col-xs-12 is ideal. 
+- For larger screens as well: col-lg-12.
+
+# Code:
+To see the code:
+
+- App script: app.py
+- HTML code: index_starter.html
+- Scraping script: scraping.py

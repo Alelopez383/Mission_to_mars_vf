@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://127.0.0.1:5000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="./Mission to Mars_challenge_files/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Add Jumbotron to Header -->
+      <div class="jumbotron text-center" style="background-image: url(https://marshemispheres.com/images/full.jpg);">
+        <h1>Mission to Mars</h1>
+        <!-- Add a button to activate scraping script -->
+        <p><a class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/scrape" role="button">Scrape New Data</a></p>
+      </div>
+
+      <!-- Add section for Mars News -->
+      <div class="row" id="mars-news">
+        <div class="col-md-12 text-center">
+          <div class="media">
+            <div class="media-body">
+              <h2>Latest Mars News</h2>
+              <h4 class="media-heading">NASA to Broadcast Mars 2020 Perseverance Launch, Prelaunch Activities</h4>
+              <p>Starting July 27, news activities will cover everything from mission engineering and science to returning samples from Mars to, of course, the launch itself.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section for Featured Image and Facts table -->
+      <div class="row" id="mars-featured-image">
+        <div class="col-md-8">
+          <h2>Featured Mars Image</h2>
+
+          <!-- if images is False/None/non-existent, then default to error message -->
+          <img src="./Mission to Mars_challenge_files/mars1.jpg" class="img-responsive" alt="Responsive image">
+        </div>
+
+        <div class="col-md-4">
+          <div class="row" id="mars-facts">
+            <h4>Mars Facts</h4>
+            <table class="table table-bordered"></table><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Mars</th>
+      <th>Earth</th>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Mars - Earth Comparison</th>
+      <td>Mars</td>
+      <td>Earth</td>
+    </tr>
+    <tr>
+      <th>Diameter:</th>
+      <td>6,779 km</td>
+      <td>12,742 km</td>
+    </tr>
+    <tr>
+      <th>Mass:</th>
+      <td>6.39 × 10^23 kg</td>
+      <td>5.97 × 10^24 kg</td>
+    </tr>
+    <tr>
+      <th>Moons:</th>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Distance from Sun:</th>
+      <td>227,943,824 km</td>
+      <td>149,598,262 km</td>
+    </tr>
+    <tr>
+      <th>Length of Year:</th>
+      <td>687 Earth days</td>
+      <td>365.24 days</td>
+    </tr>
+    <tr>
+      <th>Temperature:</th>
+      <td>-87 to -5 °C</td>
+      <td>-88 to 58°C</td>
+    </tr>
+  </tbody>
+</table> 
+           </div>  
+        </div>
+      </div> 
+
+      <!-- Section for Mars Hemispheres -->
+      
+      <div class="row" id="mars-hemispheres">
+        <div class="page-header">
+          <h2 class="text-center">Mars Hemispheres</h2>
+        </div>
+
+        
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <img src="./Mission to Mars_challenge_files/full.jpg" alt="...">
+            <div class="caption">
+              <h3>Cerberus Hemisphere Enhanced</h3>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <img src="./Mission to Mars_challenge_files/schiaparelli_enhanced-full.jpg" alt="...">
+            <div class="caption">
+              <h3>Schiaparelli Hemisphere Enhanced</h3>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <img src="./Mission to Mars_challenge_files/syrtis_major_enhanced-full.jpg" alt="...">
+            <div class="caption">
+              <h3>Syrtis Major Hemisphere Enhanced</h3>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="thumbnail">
+            <img src="./Mission to Mars_challenge_files/valles_marineris_enhanced-full.jpg" alt="...">
+            <div class="caption">
+              <h3>Valles Marineris Hemisphere Enhanced</h3>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  
+</body></html>

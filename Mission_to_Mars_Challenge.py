@@ -78,43 +78,30 @@ url = 'https://marshemispheres.com/'
 
 browser.visit(url)
 
-# Parse the data
-hemi_html = browser.html
-hemi_soup = soup(hemi_html, 'html.parser')
-
-# Retrieve items for hemispheres information
-items = hemi_soup.find_all('div', class_='item')
 
 # 2. Create a list to hold the images and titles.
 hemisphere_image_urls = []
 
 # 3. Write code to retrieve the image urls and titles for each hemisphere.
-
-main_url = "https://marshemispheres.com/"
-
-# Create loop to scrape through all hemisphere information
-
-for url in items:
+for hemis in range(4):
+    # Browse through each article
+    browser.links.find_by_partial_text('Hemisphere')[hemis].click()
+    
+    # Parse the HTML
+    html = browser.html
+    hemi_soup = soup(html,'html.parser')
+    
+    # Scraping
+    title = hemi_soup.find('h2', class_='title').text
+    img_url = hemi_soup.find('li').a.get('href')
+    
+    # Store findings into a dictionary and append to list
     hemispheres = {}
-    titles = url.find('h3').text
-    
-    # create link for full image
-    link_ref = url.find('a', class_='itemLink product-item')['href']
-    
-    # Use the base URL to create an absolute URL and browser visit
-    browser.visit(main_url + link_ref)
-    
-    # parse the data
-    image_html = browser.html
-    image_soup = soup(image_html, 'html.parser')
-    download = image_soup.find('div', class_= 'downloads')
-    img_url = download.find('a')['href']
-    
-
-    # append list
-    hemispheres['img_url'] = img_url
-    hemispheres['title'] = titles
+    hemispheres['img_url'] = f'https://marshemispheres.com/{img_url}'
+    hemispheres['title'] = title
     hemisphere_image_urls.append(hemispheres)
+    
+    # Browse back to repeat
     browser.back()
 
 # 4. Print the list that holds the dictionary of each image url and title.

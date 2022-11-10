@@ -21,7 +21,7 @@
 
       <!-- Add section for Mars News -->
       <div class="row" id="mars-news">
-        <div class="col-md-12.col-xs-12 .col-sm-6 .col-lg-8">
+        <div class="col-md-12">
           <div class="media">
             <div class="media-body">
               <h2>Latest Mars News</h2>
@@ -34,7 +34,7 @@
 
       <!-- Section for Featured Image and Facts table -->
       <div class="row" id="mars-featured-image">
-        <div class="col-md-8">
+        <div class="col-md-6" class="mobilethumb">
           <h2>Featured Mars Image</h2>
 
           <!-- if images is False/None/non-existent, then default to error message -->
@@ -61,7 +61,7 @@
         </div>
 
         {% for hemisphere in mars.hemispheres %}
-        <div class="col-md-6">
+        <div class="col-xs-12">
           <div class="thumbnail">
             <img src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="...">
             <div class="caption">
@@ -72,5 +72,21 @@
         {% endfor %}
       </div>
     </div>
-  </body>
+    <br clear="all" />
+    <hr />
+    <div class="col-md-12">
+      <div id="footer"> Sources:
+        <ul>
+          <li style="display: inline;"><a href="https://redplanetscience.com">https://redplanetscience.com</a> |</li>
+          <div></div>
+          <li style="display: inline;"><a href="https://spaceimages-mars.com">https://spaceimages-mars.com</a> |</li>
+          <div></div>
+          <li style="display: inline;"><a href="https://galaxyfacts-mars.com">https://galaxyfacts-mars.com</a> |</li>
+          <div></div>
+          <li style="display: inline;"><a href="https://marshemispheres.com">https://marshemispheres.com</a></li>
+        </ul> 
+      </div>
+    </div>
+  </div>
+</body>
 </html>

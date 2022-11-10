@@ -138,8 +138,9 @@ for link in complete_links:
 # Updating web application
 ![image](https://user-images.githubusercontent.com/43974872/201003267-998f09cd-d7e3-4aa6-a664-ab0c9ddf9836.png)
 
-#To make the app mobile responsive
+# To make the app mobile responsive
 We can use the DevTools to check if any web application is mobile responsive 
+
 ![image](https://user-images.githubusercontent.com/43974872/201009160-d6de6c2e-608e-4d2b-a922-52f422c77a3f.png)
 
 - For tablets, we would use col-sm-12. 
